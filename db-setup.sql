@@ -1,4 +1,4 @@
--- USE keepr13;
+USE beekeepr;
 
 -- CREATE TABLE vaults (
 --     id int NOT NULL AUTO_INCREMENT,
@@ -13,7 +13,7 @@
 --     id int NOT NULL AUTO_INCREMENT,
 --     name VARCHAR(255) NOT NULL,
 --     description VARCHAR(255) NOT NULL,
---     userId VARCHAR(255),
+--     userId VARCHAR(255) NOT NULL,
 --     img VARCHAR(255),
 --     isPrivate TINYINT,
 --     views INT DEFAULT 0,
@@ -50,7 +50,7 @@
 
 
 
--- -- USE THIS TO CLEAN OUT YOUR DATABASE
+-- USE THIS TO CLEAN OUT YOUR DATABASE
 -- DROP TABLE IF EXISTS vaultkeeps;
 -- DROP TABLE IF EXISTS vaults;
 -- DROP TABLE IF EXISTS keeps;
