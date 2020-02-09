@@ -15,9 +15,9 @@ namespace Keepr.Repositories
       _db = db;
     }
 
-    internal IEnumerable<Vault> Get()
+    internal IEnumerable<Vault> GetByUserId(string UserId)
     {
-      string sql = "SELECT * FROM vaults WHERE isPrivate = 0;";
+      string sql = "SELECT * FROM vaults;";
       return _db.Query<Vault>(sql);
     }
 
@@ -31,10 +31,9 @@ namespace Keepr.Repositories
     {
       string sql = @"
         INSERT INTO vaults
-        (name) VALUES (@Name);
-        (description) VALUES (@Description);
-        (userId) VALUES (@UserId);
-        (isPrivate) VALUES (@IsPrivate);
+        (name, description, userId) 
+        VALUES 
+        (@Name, @Description, @UserId);
         SELECT LAST_INSERT_ID();";
       int id = _db.ExecuteScalar<int>(sql, vaultData);
       vaultData.Id = id;

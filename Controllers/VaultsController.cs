@@ -21,11 +21,13 @@ namespace Keepr.Controllers
       _vs = vs;
     }
     [HttpGet]
-    public ActionResult<IEnumerable<Vault>> Get()
+    [Authorize]
+    public ActionResult<IEnumerable<Vault>> GetByUserId(string userId)
     {
       try
       {
-        return Ok(_vs.Get());
+        userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        return Ok(_vs.GetByUserId(userId));
       }
       catch (Exception e)
       {
@@ -65,7 +67,8 @@ namespace Keepr.Controllers
     {
       try
       {
-        return Ok(_vs.Delete(id));
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        return Ok(_vs.Delete(userId, id));
       }
       catch (Exception e)
       {
