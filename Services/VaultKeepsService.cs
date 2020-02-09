@@ -19,14 +19,24 @@ namespace Keepr.Services
       if (exists == null) { throw new Exception("Invalid ID"); }
       return exists;
     }
+    internal VaultKeep GetByVaultId(int id, int vaultId)
+    {
+      var exists = _repo.GetByVaultId(id, vaultId);
+      if (exists == null) { throw new Exception("Invalid ID"); }
+      return exists;
+    }
     internal VaultKeep Create(VaultKeep newVaultKeep)
     {
       return _repo.Create(newVaultKeep);
     }
-    internal string Delete(int id)
+        internal string Delete(string userId, int id)
     {
       var exists = _repo.GetById(id);
       if (exists == null) { throw new Exception("Invalid Id"); }
+      if (exists.UserId != userId)
+      {
+        throw new Exception("I can't let you do that");
+      }
       _repo.Delete(id);
       return "Successfully Deleted";
     }

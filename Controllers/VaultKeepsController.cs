@@ -1,4 +1,5 @@
 using System;
+using System.Security.Claims;
 using Keepr.Models;
 using Keepr.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -20,7 +21,19 @@ namespace Keepr.Controllers
     {
       try
       {
-        return Ok(_vks.GetById(id));
+          return Ok(_vks.GetById(id));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+    [HttpGet("{id}/keeps/{vaultId}")]
+    public ActionResult<VaultKeep> Get(int id, int vaultId)
+    {
+      try
+      {
+        return Ok(_vks.GetByVaultId(id, vaultId));
       }
       catch (Exception e)
       {
@@ -33,6 +46,8 @@ namespace Keepr.Controllers
     {
       try
       {
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        newVaultKeep.UserId = userId;
         return Ok(_vks.Create(newVaultKeep));
       }
       catch (Exception e)
@@ -46,7 +61,8 @@ namespace Keepr.Controllers
     {
       try
       {
-        return Ok(_vks.Delete(id));
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        return Ok(_vks.Delete(userId, id));
       }
       catch (Exception e)
       {
