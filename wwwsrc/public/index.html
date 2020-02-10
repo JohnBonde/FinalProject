@@ -6,10 +6,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link
       rel="stylesheet"
+      type="text/css"
+      href="../src/assets/homeycombs.css"
+    />
+    <link
+      rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
-    <title>Keepr</title>
+    <title>BeeKeepr</title>
   </head>
   <body>
     <noscript>
@@ -22,3 +27,13 @@
     <!-- built files will be auto injected -->
   </body>
 </html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="../src/assets/jquery.homeycombs.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".honeycombs").honeycombs({
+      combWidth: 250,
+      margin: 10
+    });
+  });
+</script>
