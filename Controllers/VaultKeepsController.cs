@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using Keepr.Models;
 using Keepr.Services;
@@ -16,24 +17,14 @@ namespace Keepr.Controllers
     {
       _vks = vks;
     }
-    [HttpGet("{id}")]
-    public ActionResult<VaultKeep> Get(int id)
+    [HttpGet("{vaultId}/keeps")]
+    [Authorize]
+    public ActionResult<IEnumerable<Keep>> Get(int vaultId)
     {
       try
       {
-          return Ok(_vks.GetById(id));
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
-    }
-    [HttpGet("{id}/keeps/{vaultId}")]
-    public ActionResult<VaultKeep> Get(int id, int vaultId)
-    {
-      try
-      {
-        return Ok(_vks.GetByVaultId(id, vaultId));
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        return Ok(_vks.GetByVaultId(vaultId, userId));
       }
       catch (Exception e)
       {
@@ -55,14 +46,14 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
-    [HttpDelete("{id}")]
+    [HttpDelete("{vaultId}/keeps/{keepId}")]
     [Authorize]
-    public ActionResult<String> Delete(int id)
+    public ActionResult<String> Delete(int vaultId, int keepId)
     {
       try
       {
         var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        return Ok(_vks.Delete(userId, id));
+        return Ok(_vks.Delete(userId, vaultId, keepId));
       }
       catch (Exception e)
       {

@@ -12,16 +12,9 @@ namespace Keepr.Services
     {
       _repo = repo;
     }
-    
-    internal VaultKeep GetById(int id)
+    internal IEnumerable<Keep> GetByVaultId(int vaultId, string userId)
     {
-      var exists = _repo.GetById(id);
-      if (exists == null) { throw new Exception("Invalid ID"); }
-      return exists;
-    }
-    internal VaultKeep GetByVaultId(int id, int vaultId)
-    {
-      var exists = _repo.GetByVaultId(id, vaultId);
+      var exists = _repo.GetByVaultId(vaultId, userId);
       if (exists == null) { throw new Exception("Invalid ID"); }
       return exists;
     }
@@ -29,15 +22,9 @@ namespace Keepr.Services
     {
       return _repo.Create(newVaultKeep);
     }
-        internal string Delete(string userId, int id)
+    internal string Delete(string userId, int vaultId, int keepId)
     {
-      var exists = _repo.GetById(id);
-      if (exists == null) { throw new Exception("Invalid Id"); }
-      if (exists.UserId != userId)
-      {
-        throw new Exception("I can't let you do that");
-      }
-      _repo.Delete(id);
+      _repo.Delete(vaultId, keepId, userId);
       return "Successfully Deleted";
     }
 
