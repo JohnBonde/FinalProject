@@ -16,10 +16,11 @@ namespace Keepr.Services
     {
       return _repo.Get();
     }
-    internal Keep GetById(int id)
+    internal Keep GetById(int id, string userId)
     {
       var exists = _repo.GetById(id);
       if (exists == null) { throw new Exception("Invalid ID"); }
+      if (exists.IsPrivate == true && exists.UserId != userId) { throw new Exception("This post is private and cannot be viewed"); }
       return exists;
     }
     internal Keep Create(Keep newKeep)
@@ -29,9 +30,10 @@ namespace Keepr.Services
     internal Keep Edit(Keep update)
     {
       Keep exists = _repo.GetById(update.Id);
-      if (exists == null)
+      if (exists == null) { throw new Exception("Invalid Id"); }
+      if (exists.UserId != update.UserId)
       {
-        throw new Exception("Invalid Id");
+        throw new Exception("You don't have the required permissions to perform this task");
       }
       _repo.Edit(update);
       return update;
@@ -42,7 +44,7 @@ namespace Keepr.Services
       if (exists == null) { throw new Exception("Invalid Id"); }
       if (exists.UserId != userId)
       {
-        throw new Exception("I can't let you do that");
+        throw new Exception("You don't have the required permissions to perform this task");
       }
       _repo.Delete(id);
       return "Successfully Deleted";

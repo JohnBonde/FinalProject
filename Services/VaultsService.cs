@@ -19,10 +19,14 @@ namespace Keepr.Services
       if (exists == null) { throw new Exception("Invalid ID"); }
       return exists;
     }
-    internal Vault GetById(int id)
+    internal Vault GetById(int id, string userId)
     {
       var exists = _repo.GetById(id);
       if (exists == null) { throw new Exception("Invalid ID"); }
+      if (exists.UserId != userId)
+      {
+        throw new Exception("You don't have the required permissions to perform this task");
+      }
       return exists;
     }
     internal Vault Create(Vault newVault)
@@ -35,7 +39,7 @@ namespace Keepr.Services
       if (exists == null) { throw new Exception("Invalid Id"); }
       if (exists.UserId != userId)
       {
-        throw new Exception("I can't let you do that");
+        throw new Exception("You don't have the required permissions to perform this task");
       }
       _repo.Delete(id);
       return "Successfully Deleted";
