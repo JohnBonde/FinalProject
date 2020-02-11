@@ -22,11 +22,11 @@ namespace Keepr.Controllers
     }
     [HttpGet]
     [Authorize]
-    public ActionResult<IEnumerable<Vault>> GetByUserId(string userId)
+    public ActionResult<IEnumerable<Vault>> GetByUserId()
     {
       try
       {
-        userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
         return Ok(_vs.GetByUserId(userId));
       }
       catch (Exception e)

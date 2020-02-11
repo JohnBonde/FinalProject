@@ -1,62 +1,23 @@
 <template>
-  <div class="home container-fluid">
-    <div class="row">
-      <div class="col">
-        <h1>BeeKeepr</h1>
-        <button class="btn btn-primary" @click="showModal">Create Comb</button>
-      </div>
+  <li class="hex comb">
+    <div class="hexIn">
+      <a class="hexLink" href="#">
+        <div class="img" v-bind:style="{ backgroundImage: 'url('+ combData.img +')' }"></div>
+        <h1 id="demo1">{{combData.name}}</h1>
+        <p id="demo2">{{combData.description}}</p>
+      </a>
     </div>
-    <div class="row">
-      <div class="col">
-        <div class="grid">
-          <ul id="hexGrid">
-            <comb :combData="comb" v-for="comb in combs" :key="comb.id" />
-          </ul>
-        </div>
-      </div>
-    </div>
-    <comb-modal v-show="isModalVisible" @close="closeModal" />
-  </div>
+  </li>
 </template>
 
 <script>
-import CombModal from "../components/CombModal";
-import Comb from "../components/Comb";
 export default {
-  name: "home",
-  components: {
-    CombModal,
-    Comb
-  },
-  data() {
-    return { isModalVisible: false };
-  },
-  mounted() {
-    this.$store.dispatch("getPublicKeeps");
-  },
-  computed: {
-    user() {
-      return this.$store.state.user;
-    },
-    combs() {
-      return this.$store.state.publicKeeps;
-    }
-  },
-  methods: {
-    logout() {
-      this.$store.dispatch("logout");
-    },
-    showModal() {
-      this.isModalVisible = true;
-    },
-    closeModal() {
-      this.isModalVisible = false;
-    }
-  }
+  name: "comb",
+  props: ["combData"]
 };
 </script>
+
 <style>
-/* Hexagons */
 #hexGrid {
   display: flex;
   flex-wrap: wrap;
