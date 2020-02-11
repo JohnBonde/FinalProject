@@ -35,7 +35,6 @@ export default new Vuex.Store({
       state.vaults.push(vault);
     },
     setVaults(state, vaults) {
-      debugger;
       state.vaults = vaults;
     }
   },
@@ -63,7 +62,6 @@ export default new Vuex.Store({
       commit("setVault", res.data);
     },
     async getVaults({ commit, dispatch }) {
-      debugger;
       let res = await api.get("vaults");
       commit("setVaults", res.data);
     }

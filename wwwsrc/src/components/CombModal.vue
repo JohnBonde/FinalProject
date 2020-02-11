@@ -27,25 +27,13 @@
                 placeholder="Enter comb description"
                 v-model="newComb.description"
               />
-              <input
-                id="img"
-                type="text"
-                placeholder="Enter image url"
-                v-model="newComb.img"
-              />
-              <input
-                for="isPrivate"
-                type="checkbox"
-                value="Private"
-                v-model="newComb.isPrivate"
-              />
+              <input id="img" type="text" placeholder="Enter image url" v-model="newComb.img" />
+              <input for="isPrivate" type="checkbox" value="Private" v-model="newComb.isPrivate" />
               <label for="isPrivate">Make Private</label>
             </div>
             <footer>
               <button type="submit" class="btn btn-success m-1">Submit</button>
-              <button type="button" class="btn btn-danger m-1" @click="close">
-                Cancel
-              </button>
+              <button type="button" class="btn btn-danger m-1" @click="close">Cancel</button>
             </footer>
           </form>
         </slot>
@@ -84,7 +72,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .modal-backdrop {
   position: fixed;
   top: 0;

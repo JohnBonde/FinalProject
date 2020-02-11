@@ -56,6 +56,9 @@ export default {
 };
 </script>
 <style>
+body {
+  background-color: gold;
+}
 /* Hexagons */
 #hexGrid {
   display: flex;
@@ -108,17 +111,6 @@ export default {
 }
 
 /*** HEX CONTENT **********************************************************************/
-.hex img {
-  left: -100%;
-  right: -100%;
-  width: auto;
-  height: 100%;
-  margin: 0 auto;
-  -webkit-transform: rotate3d(0, 0, 0, 0deg);
-  -ms-transform: rotate3d(0, 0, 0, 0deg);
-  transform: rotate3d(0, 0, 0, 0deg);
-}
-
 .hex h1,
 .hex p {
   width: 100%;

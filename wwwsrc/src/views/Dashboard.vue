@@ -3,7 +3,7 @@
     <h1>Your Hives</h1>
     <button class="btn btn-primary" @click="showModal">Create Hive</button>
     <div class="row">
-      <div class="col"></div>
+      <hive :hiveData="hive" v-for="hive in hives" :key="hive.id" />
     </div>
     <hive-modal v-show="isModalVisible" @close="closeModal" />
   </div>
@@ -11,10 +11,12 @@
 
 <script>
 import HiveModal from "../components/HiveModal";
+import Hive from "../components/Hive";
 export default {
   name: "dashboard",
   components: {
-    HiveModal
+    HiveModal,
+    Hive
   },
   mounted() {
     this.$store.dispatch("getVaults");
@@ -22,7 +24,11 @@ export default {
   data() {
     return { isModalVisible: false };
   },
-  computed: {},
+  computed: {
+    hives() {
+      return this.$store.state.vaults;
+    }
+  },
   methods: {
     logout() {
       this.$store.dispatch("logout");
