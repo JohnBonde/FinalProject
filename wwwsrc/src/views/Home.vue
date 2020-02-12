@@ -111,17 +111,18 @@ body {
 }
 
 /*** HEX CONTENT **********************************************************************/
-.hex h1,
+
+.hex h6,
 .hex p {
   width: 100%;
   padding: 5%;
   box-sizing: border-box;
-  background-color: rgba(0, 128, 128, 0.8);
+  background-color: rgba(110, 110, 110, 0.8);
   font-weight: 300;
   -webkit-transition: -webkit-transform 0.2s ease-out, opacity 0.3s ease-out;
   transition: transform 0.2s ease-out, opacity 0.3s ease-out;
 }
-.hex h1 {
+.hex h6 {
   bottom: 50%;
   padding-top: 50%;
   font-size: 1.5em;
@@ -130,7 +131,7 @@ body {
   -ms-transform: translate3d(0, -100%, 0);
   transform: translate3d(0, -100%, 0);
 }
-.hex h1::after {
+.hex h6::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -148,8 +149,8 @@ body {
 }
 
 /*** HOVER EFFECT  **********************************************************************/
-.hexLink:hover h1,
-.hexLink:focus h1,
+.hexLink:hover h6,
+.hexLink:focus h6,
 .hexLink:hover p,
 .hexLink:focus p {
   -webkit-transform: translate3d(0, 0, 0);

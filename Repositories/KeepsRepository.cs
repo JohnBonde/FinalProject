@@ -52,6 +52,17 @@ namespace Keepr.Repositories
       WHERE id = @Id;";
       _db.Execute(sql, update);
     }
+    internal void EditCounters(Keep update)
+    {
+      string sql = @"
+      UPDATE keeps
+      SET
+      views = @Views,
+      shares = @Shares,
+      keeps = @Keeps
+      WHERE id = @Id;";
+      _db.Execute(sql, update);
+    }
     internal void Delete(int id)
     {
       string sql = "DELETE FROM keeps WHERE id = @Id";

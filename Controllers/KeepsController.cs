@@ -76,6 +76,19 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
+    [HttpPut("{id}/keeps")]
+    public ActionResult<Keep> EditCounters([FromBody] Keep update, int id)
+    {
+      try
+      {
+        update.Id = id;
+        return Ok(_ks.EditCounters(update));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
     [HttpDelete("{id}")]
     [Authorize]
     public ActionResult<String> Delete(int id)

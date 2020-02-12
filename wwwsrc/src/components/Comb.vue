@@ -1,18 +1,39 @@
 <template>
   <li class="hex comb">
     <div class="hexIn">
-      <a class="hexLink img" :style="{ backgroundImage: 'url('+ combData.img +')' }">
-        <h1 id="demo1">{{combData.name}}</h1>
-        <p id="demo2">{{combData.description}}</p>
+      <a
+        @click="selectComb"
+        class="hexLink img"
+        :style="{ backgroundImage: 'url('+ combData.img +')' }"
+      >
+        <h6 id="demo1">{{combData.name}}</h6>
+        <p id="demo2">
+          <i class="fas fa-eye">{{combData.views}}</i>
+          <br />
+          <i class="fas fa-share">{{combData.shares}}</i>
+          <br />
+          <i class="fas fa-archive">{{combData.keeps}}</i>
+        </p>
       </a>
     </div>
   </li>
 </template>
 
 <script>
+import router from "../router.js";
 export default {
   name: "comb",
-  props: ["combData"]
+  props: ["combData"],
+  methods: {
+    selectComb() {
+      debugger;
+      this.$store.commit("setActiveKeep", this.combData);
+      let update = this.combData;
+      update.views++;
+      this.$store.dispatch("addCount", update);
+      router.push({ path: "/comb", params: { combId: this.combData.id } });
+    }
+  }
 };
 </script>
 
