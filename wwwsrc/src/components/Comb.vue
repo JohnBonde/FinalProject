@@ -26,7 +26,6 @@ export default {
   props: ["combData"],
   methods: {
     selectComb() {
-      debugger;
       this.$store.commit("setActiveKeep", this.combData);
       let update = this.combData;
       update.views++;

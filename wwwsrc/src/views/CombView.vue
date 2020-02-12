@@ -13,7 +13,7 @@
           <span></span>
           {{comb.views}}
         </i>
-        <i class="fas fa-share fa-3x">
+        <i @click="addShare" class="fas fa-share fa-3x">
           <span></span>
           {{comb.shares}}
         </i>
@@ -38,6 +38,12 @@
               <a class="dropdown-item" @click="addToVault(hive.id);addArchive()">{{hive.name}}</a>
             </div>
           </div>
+          <button class="btn btn-danger" @click.prevent="deleteComb">Delete Comb</button>
+          <button
+            v-if="this.$store.state.activeVault.id != undefined"
+            class="btn btn-danger"
+            @click.prevent="deleteVaultKeep"
+          >Remove from Hive</button>
         </div>
       </div>
     </div>
@@ -45,6 +51,7 @@
 </template>
 
 <script>
+import router from "../router.js";
 export default {
   name: "comb-view",
   mounted() {
@@ -67,10 +74,25 @@ export default {
       this.$store.dispatch("createVaultKeep", newVaultKeep);
     },
     addArchive() {
-      debugger;
       let update = this.comb;
       update.keeps++;
       this.$store.dispatch("addCount", update);
+    },
+    addShare() {
+      let update = this.comb;
+      update.shares++;
+      this.$store.dispatch("addCount", update);
+    },
+    deleteComb() {
+      this.$store.dispatch("deleteKeep", this.$store.state.activeKeep.id);
+      router.push({ path: "/" });
+    },
+    deleteVaultKeep() {
+      let ids = {
+        vaultId: this.$store.state.activeVault.id,
+        keepId: this.comb.id
+      };
+      this.$store.dispatch("deleteVaultKeep", ids);
     }
   }
 };

@@ -2,6 +2,7 @@
   <div class="hive-view container-fluid">
     <div class="row">
       <div class="col">
+        <button class="btn btn-danger" @click.prevent="deleteHive">Delete Hive</button>
         <h1>{{hive.name}}</h1>
         <h3>{{hive.description}}</h3>
       </div>
@@ -19,6 +20,7 @@
 </template>
 
 <script>
+import router from "../router.js";
 import Comb from "../components/Comb";
 export default {
   name: "hive-view",
@@ -34,6 +36,12 @@ export default {
     },
     combs() {
       return this.$store.state.vaultKeeps;
+    }
+  },
+  methods: {
+    deleteHive() {
+      this.$store.dispatch("deleteVault", this.hive.id);
+      router.push({ path: "/dashboard" });
     }
   }
 };

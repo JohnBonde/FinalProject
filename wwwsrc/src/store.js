@@ -81,6 +81,9 @@ export default new Vuex.Store({
       let res = await api.put("keeps/" + update.id + "/keeps", update);
       commit("setActiveKeep", res.data);
     },
+    async deleteKeep({ commit, dispatch }, id) {
+      await api.delete("keeps/" + id);
+    },
     //#endregion
     //#region --Vault Functions--
     async addVault({ commit, dispatch }, newVault) {
@@ -95,6 +98,9 @@ export default new Vuex.Store({
       let res = await api.get("vaults/" + id);
       commit("setActiveVault", res.data);
     },
+    async deleteVault({ commit, dispatch }, id) {
+      await api.delete("vaults/" + id);
+    },
     //#endregion
     //#region --VaultKeep Functions--
     async createVaultKeep({ commit, dispatch }, newData) {
@@ -104,6 +110,9 @@ export default new Vuex.Store({
     async getVaultKeeps({ commit, dispatch }, vaultId) {
       let res = await api.get("vaultkeeps/" + vaultId + "/keeps");
       commit("setVaultKeeps", res.data);
+    },
+    async deleteVaultKeep({ commit, dispatch }, ids) {
+      await api.delete("vaultkeeps/" + ids.vaultId + "/keeps/" + ids.keepId);
     }
     //#endregion
   }
