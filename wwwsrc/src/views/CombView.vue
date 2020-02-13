@@ -1,9 +1,10 @@
 <template>
   <div class="comb-view container-fluid">
     <div class="row content-row">
-      <div class="col content">
+      <div class="col content" style="margin-top: 10px;">
         <h1>{{comb.name}}</h1>
         <img :src="comb.img" />
+        <br />
         <h3>{{comb.description}}</h3>
       </div>
     </div>
