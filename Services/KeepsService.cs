@@ -23,6 +23,10 @@ namespace Keepr.Services
       if (exists.IsPrivate == true && exists.UserId != userId) { throw new Exception("This post is private and cannot be viewed"); }
       return exists;
     }
+    internal IEnumerable<Keep> GetByUserId(string userId)
+    {
+      return _repo.GetByUserId(userId);
+    }
     internal Keep Create(Keep newKeep)
     {
       return _repo.Create(newKeep);

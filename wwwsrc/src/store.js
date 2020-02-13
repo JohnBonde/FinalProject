@@ -25,8 +25,11 @@ export default new Vuex.Store({
     activeKeep: {}
   },
   mutations: {
-    setPrivateKeeps(state, keep) {
+    addPrivateKeep(state, keep) {
       state.privateKeeps.push(keep);
+    },
+    setPrivateKeeps(state, keeps) {
+      state.privateKeeps = keeps;
     },
     addKeep(state, keep) {
       state.publicKeeps.push(keep);
@@ -64,7 +67,7 @@ export default new Vuex.Store({
     async addKeep({ commit, dispatch }, newKeep) {
       let res = await api.post("keeps", newKeep);
       if (res.data.isPrivate == true) {
-        commit("setPrivateKeeps", res.data);
+        commit("addPrivateKeeps", res.data);
       } else {
         commit("addKeep", res.data);
       }
@@ -72,6 +75,10 @@ export default new Vuex.Store({
     async getPublicKeeps({ commit, dispatch }) {
       let res = await api.get("keeps");
       commit("setPublicKeeps", res.data);
+    },
+    async getUserKeeps({ commit, dispatch }, user) {
+      let res = await api.get("keeps/user", user);
+      commit("setPrivateKeeps", res.data);
     },
     async getKeepsByVaultId({ commit, dispatch }, id) {
       let res = await api.get("vaultkeeps/" + id + "/keeps");
