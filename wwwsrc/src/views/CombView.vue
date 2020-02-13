@@ -137,4 +137,7 @@ export default {
 .fa-share {
   cursor: pointer;
 }
+a {
+  cursor: pointer;
+}
 </style>
