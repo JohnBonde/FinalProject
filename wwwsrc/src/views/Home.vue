@@ -1,9 +1,12 @@
 <template>
   <div class="home container-fluid">
     <div class="row">
-      <div class="col">
+      <div class="col-10">
         <h1>BeeKeepr</h1>
-        <button class="btn btn-primary" @click="showModal">Create Comb</button>
+      </div>
+      <div class="col-2 create-comb">
+        <img @click="showModal" src="../assets/honeycomb.png" style="width:50px;height:50px">
+        <i class="fas fa-plus"></i>
       </div>
     </div>
     <div class="row">
@@ -59,6 +62,14 @@ export default {
 body {
   background-color: gold;
 }
+.create-comb {
+  display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+}
+.create-comb img, .fa-plus {
+  cursor: pointer;
+}
 /* Hexagons */
 #hexGrid {
   display: flex;
@@ -69,12 +80,14 @@ body {
   font-family: "Raleway", sans-serif;
   font-size: 15px;
   list-style-type: none;
+  
 }
 
 .hex {
   position: relative;
   visibility: hidden;
   outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+  
 }
 .hex::after {
   content: "";
@@ -92,11 +105,13 @@ body {
   -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
   -ms-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
   transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+  
 }
 .hexIn * {
   position: absolute;
   visibility: visible;
   outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+  
 }
 .hexLink {
   display: block;
@@ -108,6 +123,7 @@ body {
   -webkit-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
   -ms-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
   transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+  background-color: darkgoldenrod;
 }
 
 /*** HEX CONTENT **********************************************************************/

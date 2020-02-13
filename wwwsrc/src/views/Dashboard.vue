@@ -22,7 +22,9 @@ export default {
     this.$store.dispatch("getVaults");
   },
   data() {
-    return { isModalVisible: false };
+    return { 
+      isModalVisible: false,
+     };
   },
   computed: {
     hives() {

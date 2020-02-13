@@ -47,5 +47,7 @@ export default {
   -webkit-transform: rotate3d(0, 0, 0, 0deg);
   -ms-transform: rotate3d(0, 0, 0, 0deg);
   transform: rotate3d(0, 0, 0, 0deg);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 </style>

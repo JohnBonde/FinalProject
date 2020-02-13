@@ -28,8 +28,16 @@
                 v-model="newComb.description"
               />
               <input id="img" type="text" placeholder="Enter image url" v-model="newComb.img" />
-              <input for="isPrivate" type="checkbox" value="Private" v-model="newComb.isPrivate" />
-              <label for="isPrivate">Make Private</label>
+              <div class="checkbox">
+                <input
+                  id="checkbox"
+                  for="isPrivate"
+                  type="checkbox"
+                  value="Private"
+                  v-model="newComb.isPrivate"
+                />
+                <label id="label" for="isPrivate">Make Private</label>
+              </div>
             </div>
             <footer>
               <button type="submit" class="btn btn-success m-1">Submit</button>
@@ -73,6 +81,22 @@ export default {
 };
 </script>
 <style scoped>
+input {
+  margin-bottom: 5px;
+}
+.checkbox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+#checkbox {
+  margin-right: 110px;
+  margin-top: 10px;
+}
+#label {
+  margin-right: 120px;
+  margin-top: -19px;
+}
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -91,7 +115,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 50vh;
-  height: 50%;
+  height: 55%;
   top: 20vh;
   left: 9vw;
 }

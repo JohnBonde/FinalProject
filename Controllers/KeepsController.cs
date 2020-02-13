@@ -45,19 +45,6 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       };
     }
-    [HttpGet("users")]
-    public ActionResult<Keep> Get()
-    {
-      try
-      {
-        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        return Ok(_ks.GetById(userId));
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      };
-    }
     [HttpPost]
     [Authorize]
     public ActionResult<Keep> Post([FromBody] Keep newKeep)

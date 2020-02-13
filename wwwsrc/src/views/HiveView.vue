@@ -41,6 +41,7 @@ export default {
   methods: {
     deleteHive() {
       this.$store.dispatch("deleteVault", this.hive.id);
+      this.$store.dispatch("getVaults");
       router.push({ path: "/dashboard" });
     }
   }
