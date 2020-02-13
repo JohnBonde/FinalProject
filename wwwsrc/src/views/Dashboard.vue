@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard container-fluid">
     <div class="row">
-      <div class="col-10">
+      <div class="col-10" style="margin-top: 10px;">
         <h1>Your Hives</h1>
       </div>
       <div class="col-2 create-hive">
@@ -13,7 +13,7 @@
       <hive :hiveData="hive" v-for="hive in hives" :key="hive.id" />
     </div>
     <div class="row">
-      <div class="col-10" style="margin-top: 10px;">
+      <div class="col-10">
         <h1>Your Honeycombs</h1>
       </div>
       <div class="col-2 create-comb2">
