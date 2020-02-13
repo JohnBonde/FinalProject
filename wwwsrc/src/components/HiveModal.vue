@@ -4,9 +4,6 @@
       <header class="modal-header">
         <slot name="header">
           <h3>Create Comb</h3>
-          <button type="button" class="btn-close" @click="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
         </slot>
       </header>
       <section class="modal-body">
@@ -85,8 +82,9 @@ export default {
   flex-direction: column;
   width: 50vh;
   height: 45%;
-  top: 20vh;
-  left: 9vw;
+  top: auto;
+  left: auto;
+  background-position: center;
 }
 .modal-header,
 .modal-footer {
