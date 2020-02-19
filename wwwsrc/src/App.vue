@@ -21,4 +21,7 @@ export default {
 </script>
 
 <style>
+* {
+  font-family: "Galada", cursive;
+}
 </style>

@@ -1,9 +1,10 @@
 <template>
   <div class="comb-view container-fluid">
     <div class="row content-row">
-      <div class="col content">
+      <div class="col content" style="margin-top: 10px;">
         <h1>{{comb.name}}</h1>
         <img :src="comb.img" />
+        <br />
         <h3>{{comb.description}}</h3>
       </div>
     </div>
@@ -24,7 +25,7 @@
       </div>
     </div>
     <div class="row drop">
-      <div class="col-4 dropdown">
+      <div class="col-2 dropdown">
         <div class="btn-group">
           <button
             type="button"
@@ -38,13 +39,17 @@
               <a class="dropdown-item" @click="addToVault(hive.id);addArchive()">{{hive.name}}</a>
             </div>
           </div>
-          <button class="btn btn-danger" @click.prevent="deleteComb">Delete Comb</button>
-          <button
-            v-if="this.$store.state.activeVault.id != undefined"
-            class="btn btn-danger"
-            @click.prevent="deleteVaultKeep"
-          >Remove from Hive</button>
         </div>
+      </div>
+      <div class="col-2 delete-comb">
+        <button class="btn btn-danger" @click.prevent="deleteComb">Delete Comb</button>
+      </div>
+      <div class="col-2 delete-vaultkeep">
+        <button
+          v-if="this.$store.state.activeVault.id != undefined"
+          class="btn btn-danger"
+          @click.prevent="deleteVaultKeep"
+        >Remove from Hive</button>
       </div>
     </div>
   </div>
@@ -104,16 +109,35 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-.numbers-row,
-.drop {
+.numbers-row {
   justify-content: center;
 }
-.numbers,
-.dropdown {
+.numbers {
   display: flex;
   justify-content: space-around;
 }
+.drop {
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.dropdown,
+.delete-comb,
+.delete-vaultkeep {
+  display: flex;
+}
+.dropdown {
+  justify-content: flex-end;
+}
+.delete-comb {
+  justify-content: center;
+}
+.delete-vaultkeep {
+  justify-content: flex-start;
+}
 .fa-share {
+  cursor: pointer;
+}
+a {
   cursor: pointer;
 }
 </style>
